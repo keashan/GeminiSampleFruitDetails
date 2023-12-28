@@ -1,0 +1,39 @@
+#image-form{
+    margin-bottom: 10px;
+}
+.align-center{
+    text-align: center;
+    box-shadow: 0 2px 4px 0 rgba(100,100,100,.4);
+    display: block;
+    width: 50%;
+    margin: 10px auto;
+    padding: 10px;
+}
+.btn{
+    margin-bottom: 10px;
+}
+#image-input{
+    margin-bottom: 10px;
+}
+#preview-image{
+    text-align: center;
+    width: 90%;
+}
+.image-holder{
+    display: flex;
+    justify-content: center;
+}
+.image-holder img {
+    vertical-align: middle;
+}
+
+#loading-icon{
+    width: 20%;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
