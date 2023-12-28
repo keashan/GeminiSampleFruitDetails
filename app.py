@@ -4,11 +4,15 @@ import os
 from flask import Flask, render_template, request
 from pathlib import Path
 import google.generativeai as genai
+from dotenv import load_dotenv
+
+
+load_dotenv()
 
 app = Flask(__name__)
 
 # Set up the generative model
-genai.configure(api_key="AIzaSyDLnxPdVaQE_iw-l4DzeOgpKHFzUQm-5k4")
+genai.configure(api_key=os.getenv("API_KEY"))
 
 generation_config = {
     "temperature": 0.4,
