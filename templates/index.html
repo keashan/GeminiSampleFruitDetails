@@ -4,6 +4,26 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <df-messenger
+      project-id="chatbots-305505"
+      agent-id="662e8628-0809-4a8c-af55-943e3b7e1d76"
+      language-code="en">
+      <df-messenger-chat
+       chat-title="Keashan">
+      </df-messenger-chat>
+    </df-messenger>
+    <style>
+      df-messenger {
+        z-index: 999;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        top: 0;
+        width: 350px;
+      }
+    </style>
     <title>Fruit Image Description</title>
 </head>
 <body>
