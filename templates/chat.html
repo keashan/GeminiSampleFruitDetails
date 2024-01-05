@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="main-card align-center">
+        <h1>Train Expert</h1>
+        <p>Ask a question about trains to get answered</p>
+        <form method="POST" enctype="multipart/form-data" id="chat-form">
+            <input type="text" name="topic" id="chat-input" class="form-control">
+            <button class="btn btn-secondary mt-3">Generate</button>
+        </form>
+        <div class="image-holder">
+                    <img id ="loading-icon-chat" class="loading-icon" src="{{ url_for("static",filename="images/loading.gif") }}" style="display: none;" alt="Loading...">
+                </div>
+                {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+        <div>
+            <p id="chat"></p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function (){
+            $('#chat-form').submit(function (event){
+                event.preventDefault();
+                const chat = document.getElementById("chat-input").value;
+                var res = document.getElementById("chat")
+                res.innerText=""
+                $('#loading-icon-chat').show();
+                $.ajax({
+                    type: "POST",
+                    url: "/chatwithtrainexpert",
+                    data: JSON.stringify({
+                        'msg':chat,
+                    }),
+                    dataType:'json',
+                    contentType: "application/json;charset=UTF-8",
+                }).done(function (response){
+                        res.innerText=response;
+                }).fail(function (jqXHR, textStatus, errorThrown){
+                        console.log(errorThrown)
+                }).always(function (){
+                        $('#loading-icon-chat').hide();
+                });
+            });
+        });
+    </script>
+{% endblock %}

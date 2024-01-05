@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/cf68c1613d.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+    <script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>
+    <df-messenger
+      project-id="chatbots-305505"
+      agent-id="662e8628-0809-4a8c-af55-943e3b7e1d76"
+      language-code="en">
+      <df-messenger-chat-bubble
+       chat-title="Keashan">
+      </df-messenger-chat-bubble>
+    </df-messenger>
+    <style>
+      df-messenger {
+        z-index: 999;
+        position: fixed;
+        bottom: 16px;
+        right: 16px;
+      }
+    </style>
+    <title> </title>
+</head>
+    <body>
+        <div class="container">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3"><i class="fa-solid fa-house-user"></i> Home</a>
+            <a href="{{ url_for('fruit') }}" class="btn btn-secondary mt-3"><i class="fa-solid fa-lemon"></i> Fruit</a>
+            <a href="{{ url_for('poem') }}" class="btn btn-secondary mt-3"><i class="fa-solid fa-ring"></i> Poem</a>
+            <a href="{{ url_for('chat') }}" class="btn btn-secondary mt-3"><i class="fa-solid fa-comment"></i> Chat</a>
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

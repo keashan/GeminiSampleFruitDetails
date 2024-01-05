@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="main-card align-center">
+        <h1>Poem Maker</h1>
+        <p>Enter a topic here to generate a small poem</p>
+        <form method="POST" enctype="multipart/form-data" id="topic-form">
+            <input type="text" name="topic" id="topic-input" class="form-control">
+            <button class="btn btn-secondary mt-3">Generate</button>
+        </form>
+        <div class="image-holder">
+                    <img id ="loading-icon-poem" class="loading-icon" src="{{ url_for("static",filename="images/loading.gif") }}" style="display: none;" alt="Loading...">
+                </div>
+                {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+        <div>
+            <p id="poem"></p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function (){
+            $('#topic-form').submit(function (event){
+                event.preventDefault();
+                const topic = document.getElementById("topic-input").value;
+                var res = document.getElementById("poem")
+                res.innerText=""
+                $('#loading-icon-poem').show();
+                $.ajax({
+                    type: "POST",
+                    url: "/getpoem",
+                    data: JSON.stringify({
+                        'topic':topic,
+                    }),
+                    dataType:'json',
+                    contentType: "application/json;charset=UTF-8",
+                }).done(function (response){
+                        res.innerText=response;
+                }).fail(function (jqXHR, textStatus, errorThrown){
+                        console.log(errorThrown)
+                }).always(function (){
+                        $('#loading-icon-poem').hide();
+                });
+            });
+        });
+    </script>
+{% endblock %}

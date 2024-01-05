@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="main-card align-center">
+        <h1>Fruit Identifier</h1>
+        <p>Upload an image of a fruit to get a description about it.</p>
+        <form method="POST" enctype="multipart/form-data" id="image-form">
+            <input type="file" name="image" id="image-input" onchange="previewImage()" class="form-control">
+            <button class="btn btn-secondary mt-3">Describe</button>
+        </form>
+        <div class="row">
+            <div class="column">
+                <div class="image-holder">
+                    <img id="preview-image" alt="Uploaded Image" style="display: none;" src="">
+                </div>
+            </div>
+            <div class="column">
+                <div class="image-holder">
+                    <img id ="loading-icon-fruit" class="loading-icon" src="{{ url_for("static",filename="images/loading.gif") }}" style="display: none;" alt="Loading...">
+                </div>
+                {% if error %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endif %}
+        {#        {% if response %}#}
+        {#            <p id="details">{{ response }}</p>#}
+        {#        {% endif %}#}
+                <p id="resp"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function previewImage() {
+            const imageInput = document.getElementById('image-input');
+            const previewImage = document.getElementById('preview-image');
+            const detail = document.getElementById("resp")
+
+            const file = imageInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                previewImage.style.display = 'block';
+                detail.innerText = "";
+            }
+
+            reader.readAsDataURL(file);
+        }
+        $(document).ready(function (){
+            $('#image-form').submit(function (event){
+                event.preventDefault();
+                const formData = new FormData(this);
+                $('#loading-icon-fruit').show();
+                $.ajax({
+                    type: "POST",
+                    url: "/getimagedescription",
+                    data: formData,
+                    contentType: false,
+                    processData: false
+                }).done(function (response){
+                        var res = document.getElementById("resp")
+                        res.innerText=response;
+                }).fail(function (jqXHR, textStatus, errorThrown){
+                        console.log(errorThrown)
+                }).always(function (){
+                        $('#loading-icon-fruit').hide();
+                });
+            });
+        });
+    </script>
+{% endblock %}
