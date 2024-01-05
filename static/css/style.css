@@ -3,9 +3,18 @@
 }
 .align-center{
     text-align: center;
+}
+.main-card{
     box-shadow: 0 2px 4px 0 rgba(100,100,100,.4);
     display: block;
-    width: 50%;
+    width: 60%;
+    margin: 10px auto;
+    padding: 10px;
+}
+.main-card-home-page{
+    box-shadow: 0 2px 4px 0 rgba(100,100,100,.4);
+    display: block;
+    width: 80%;
     margin: 10px auto;
     padding: 10px;
 }
@@ -27,7 +36,7 @@
     vertical-align: middle;
 }
 
-#loading-icon{
+.loading-icon{
     width: 20%;
 }
 .row {
@@ -36,4 +45,8 @@
 
 .column {
   flex: 50%;
+}
+
+#chat{
+    text-align: left;
 }
