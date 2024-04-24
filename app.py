@@ -1,6 +1,6 @@
 import datetime
 import json
-import logging
+# import logging
 import os
 
 from flask import Flask, render_template, request, jsonify
@@ -11,9 +11,9 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-logging.basicConfig(filename='log.log', level=logging.INFO,
-                    format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
-
+# logging.basicConfig(filename='log.log', level=logging.INFO,
+#                     format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+#
 
 app = Flask(__name__)
 
